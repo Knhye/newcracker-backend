@@ -11,5 +11,6 @@ public class UserUpdateResponse {
     private Long userId;
     private String email;
     private String nickname;
+    private String category;
     private LocalDateTime createdAt;
 }

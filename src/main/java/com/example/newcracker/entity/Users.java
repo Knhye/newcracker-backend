@@ -32,6 +32,8 @@ public class Users {
     @Column(nullable = false)
     private String nickname;
 
+    private Category category;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private RefreshToken refreshToken;
 
@@ -56,9 +58,10 @@ public class Users {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void updateInfo(String email, String nickname) {
+    public void updateInfo(String email, String nickname, Category category) {
         this.email = email;
         this.nickname = nickname;
+        this.category = category;
     }
 
     public void updatePassword(String newHashedPassword) {

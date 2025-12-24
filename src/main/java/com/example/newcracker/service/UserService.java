@@ -6,6 +6,7 @@ import com.example.newcracker.dto.user.request.UserUpdateRequest;
 import com.example.newcracker.dto.user.response.UpdateUserPasswordResponse;
 import com.example.newcracker.dto.user.response.UserDetailResponse;
 import com.example.newcracker.dto.user.response.UserUpdateResponse;
+import com.example.newcracker.entity.Category;
 import com.example.newcracker.entity.Users;
 import com.example.newcracker.global.exception.BadRequestException;
 import com.example.newcracker.repository.UserRepository;
@@ -51,13 +52,15 @@ public class UserService {
 
         user.updateInfo(
                 request.getEmail(),
-                request.getNickname()
+                request.getNickname(),
+                Category.valueOf(request.getCategory())
         );
 
         return UserUpdateResponse.builder()
                 .userId(user.getId())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
+                .category(String.valueOf(user.getCategory()))
                 .createdAt(user.getCreatedAt())
                 .build();
     }

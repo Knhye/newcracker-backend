@@ -10,4 +10,6 @@ public class UserUpdateRequest {
 
     @NotNull
     private String nickname;
+
+    private String category;
 }

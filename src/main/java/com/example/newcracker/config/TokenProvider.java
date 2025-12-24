@@ -18,7 +18,6 @@ public class TokenProvider {
     private static final long ACCESS_TOKEN_ABILITY = 1000L * 60 * 60;
     private static final long REFRESH_TOKEN_ABILITY = 1000L * 60 * 60 * 24 * 7;
 
-    @Autowired
     private final RedisTemplate<String, Object> redisTemplate;
 
     public TokenProvider(@Value("${spring.jwt.secret}") String secretKey, RedisTemplate<String, Object> redisTemplate){
