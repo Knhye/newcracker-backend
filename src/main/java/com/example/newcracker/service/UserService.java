@@ -23,7 +23,7 @@ public class UserService {
     private final UserHelper userHelper;
 
     @Transactional(readOnly = true)
-    public UserDetailResponse getUserDetail(HttpServletRequest httpServletRequest) {
+    public UserDetailResponse getUserDetail() {
         Users user = userHelper.extractUser();
 
         return UserDetailResponse.builder()
@@ -35,7 +35,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserUpdateResponse updateUser(HttpServletRequest httpServletRequest, UserUpdateRequest request) {
+    public UserUpdateResponse updateUser( UserUpdateRequest request) {
         Users user = userHelper.extractUser();
 
         user.updateInfo(
@@ -54,7 +54,7 @@ public class UserService {
     }
 
     @Transactional
-    public UpdateUserPasswordResponse updateUserPassword(HttpServletRequest httpServletRequest, UserPasswordUpdateRequest request) {
+    public UpdateUserPasswordResponse updateUserPassword(UserPasswordUpdateRequest request) {
         Users user = userHelper.extractUser();
 
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
