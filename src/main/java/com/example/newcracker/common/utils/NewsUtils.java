@@ -1,4 +1,4 @@
-package com.example.newcracker.utils;
+package com.example.newcracker.common.utils;
 
 import com.example.newcracker.config.properties.NaverProperties;
 import com.example.newcracker.dto.news.NewsDto;

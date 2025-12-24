@@ -11,10 +11,10 @@ import com.example.newcracker.dto.user.request.SignupRequest;
 import com.example.newcracker.dto.user.response.LoginResponse;
 import com.example.newcracker.dto.user.response.SignupResponse;
 import com.example.newcracker.entity.Users;
-import com.example.newcracker.global.exception.InvalidTokenException;
-import com.example.newcracker.global.exception.NotAcceptableUserException;
-import com.example.newcracker.global.exception.NotLoggedInException;
-import com.example.newcracker.global.exception.UserAlreadyExistException;
+import com.example.newcracker.common.exception.InvalidTokenException;
+import com.example.newcracker.common.exception.NotAcceptableUserException;
+import com.example.newcracker.common.exception.NotLoggedInException;
+import com.example.newcracker.common.exception.UserAlreadyExistException;
 import com.example.newcracker.repository.BlacklistRepository;
 import com.example.newcracker.repository.RefreshTokenRepository;
 import com.example.newcracker.repository.UserRepository;
@@ -28,7 +28,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

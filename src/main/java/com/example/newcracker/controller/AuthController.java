@@ -1,6 +1,6 @@
 package com.example.newcracker.controller;
 
-import com.example.newcracker.common.ApiResponse;
+import com.example.newcracker.common.response.ApiResponse;
 import com.example.newcracker.dto.refreshToken.request.RefreshRequest;
 import com.example.newcracker.dto.refreshToken.response.RefreshResponse;
 import com.example.newcracker.dto.user.request.DeleteUserRequest;

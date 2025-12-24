@@ -1,6 +1,6 @@
-package com.example.newcracker.global;
+package com.example.newcracker.common.exception;
 
-import com.example.newcracker.common.ApiResponse;
+import com.example.newcracker.common.response.ApiResponse;
 import com.example.newcracker.global.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

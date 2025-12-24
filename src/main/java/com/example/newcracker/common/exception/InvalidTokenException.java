@@ -1,4 +1,4 @@
-package com.example.newcracker.global.exception;
+package com.example.newcracker.common.exception;
 
 public class InvalidTokenException extends RuntimeException {
     public InvalidTokenException(String message) {

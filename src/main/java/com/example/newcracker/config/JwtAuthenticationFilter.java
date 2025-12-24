@@ -1,6 +1,6 @@
 package com.example.newcracker.config;
 
-import com.example.newcracker.global.exception.JwtAuthenticationException;
+import com.example.newcracker.common.exception.JwtAuthenticationException;
 import com.example.newcracker.repository.BlacklistRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

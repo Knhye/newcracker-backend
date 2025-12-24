@@ -2,8 +2,8 @@ package com.example.newcracker.service;
 
 import com.example.newcracker.client.NaverNewsClient;
 import com.example.newcracker.dto.news.NewsDto;
-import com.example.newcracker.helper.UserHelper;
-import com.example.newcracker.utils.NewsUtils;
+import com.example.newcracker.common.helper.UserHelper;
+import com.example.newcracker.common.utils.NewsUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

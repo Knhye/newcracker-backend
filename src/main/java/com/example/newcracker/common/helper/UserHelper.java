@@ -1,8 +1,8 @@
-package com.example.newcracker.helper;
+package com.example.newcracker.common.helper;
 
 import com.example.newcracker.entity.Users;
-import com.example.newcracker.global.exception.NotLoggedInException;
-import com.example.newcracker.global.exception.ResourceNotFoundException;
+import com.example.newcracker.common.exception.NotLoggedInException;
+import com.example.newcracker.common.exception.ResourceNotFoundException;
 import com.example.newcracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

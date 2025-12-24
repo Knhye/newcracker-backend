@@ -1,4 +1,4 @@
-package com.example.newcracker.common;
+package com.example.newcracker.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.example.newcracker.config;
 
-import com.example.newcracker.common.ApiResponse;
+import com.example.newcracker.common.response.ApiResponse;
 import com.example.newcracker.repository.BlacklistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

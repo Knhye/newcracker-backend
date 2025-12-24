@@ -7,8 +7,8 @@ import com.example.newcracker.dto.user.response.UserDetailResponse;
 import com.example.newcracker.dto.user.response.UserUpdateResponse;
 import com.example.newcracker.entity.Category;
 import com.example.newcracker.entity.Users;
-import com.example.newcracker.global.exception.BadRequestException;
-import com.example.newcracker.helper.UserHelper;
+import com.example.newcracker.common.exception.BadRequestException;
+import com.example.newcracker.common.helper.UserHelper;
 import com.example.newcracker.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserHelper userHelper;
 
