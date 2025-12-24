@@ -8,8 +8,8 @@ import com.example.newcracker.dto.user.response.UserUpdateResponse;
 import com.example.newcracker.entity.Category;
 import com.example.newcracker.entity.Users;
 import com.example.newcracker.global.exception.BadRequestException;
+import com.example.newcracker.helper.UserHelper;
 import com.example.newcracker.repository.UserRepository;
-import com.example.newcracker.utils.UserUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,11 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UserUtils userUtils;
+    private final UserHelper userHelper;
 
     @Transactional(readOnly = true)
     public UserDetailResponse getUserDetail(HttpServletRequest httpServletRequest) {
-        Users user = userUtils.extractUser();
+        Users user = userHelper.extractUser();
 
         return UserDetailResponse.builder()
                 .userId(user.getId())
@@ -37,7 +37,7 @@ public class UserService {
 
     @Transactional
     public UserUpdateResponse updateUser(HttpServletRequest httpServletRequest, UserUpdateRequest request) {
-        Users user = userUtils.extractUser();
+        Users user = userHelper.extractUser();
 
         user.updateInfo(
                 request.getEmail(),
@@ -56,7 +56,7 @@ public class UserService {
 
     @Transactional
     public UpdateUserPasswordResponse updateUserPassword(HttpServletRequest httpServletRequest, UserPasswordUpdateRequest request) {
-        Users user = userUtils.extractUser();
+        Users user = userHelper.extractUser();
 
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
             throw new BadRequestException("현재 비밀번호가 일치하지 않습니다.");

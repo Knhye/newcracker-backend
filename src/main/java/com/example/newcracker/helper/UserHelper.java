@@ -1,4 +1,4 @@
-package com.example.newcracker.utils;
+package com.example.newcracker.helper;
 
 import com.example.newcracker.entity.Users;
 import com.example.newcracker.global.exception.NotLoggedInException;
@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @RequiredArgsConstructor
-public class UserUtils {
+public class UserHelper {
     private final UserRepository userRepository;
     public Users extractUser(){
         String email = SecurityContextHolder.getContext()
@@ -23,3 +23,4 @@ public class UserUtils {
                 .orElseThrow(() -> new ResourceNotFoundException("유저를 찾을 수 없습니다."));
     }
 }
+

@@ -1,8 +1,9 @@
 package com.example.newcracker.service;
 
+import com.example.newcracker.client.NaverNewsClient;
 import com.example.newcracker.dto.news.NewsDto;
+import com.example.newcracker.helper.UserHelper;
 import com.example.newcracker.utils.NewsUtils;
-import com.example.newcracker.utils.UserUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class CustomizedNewsService {
+    private final NaverNewsClient naverNewsClient;
     private final NewsUtils newsUtils;
-    private final UserUtils userUtils;
+    private final UserHelper userHelper;
     /**
      * 2. 최신순 5개 뉴스 반환
      */
     public List<NewsDto> getTop5LatestNews() {
-        List<NewsDto> newsList = newsUtils.fetchNewsFromNaver(String.valueOf(userUtils.extractUser().getCategory()), 100);
+        List<NewsDto> newsList = naverNewsClient.fetchNewsFromNaver(String.valueOf(userHelper.extractUser().getCategory()), 100);
         return newsUtils.sortByLatest(newsList).stream()
                 .limit(5)
                 .collect(Collectors.toList());
