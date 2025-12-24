@@ -1,6 +1,5 @@
 package com.example.newcracker.service;
 
-import com.example.newcracker.dto.user.request.UserFcmTokenUpdateRequest;
 import com.example.newcracker.dto.user.request.UserPasswordUpdateRequest;
 import com.example.newcracker.dto.user.request.UserUpdateRequest;
 import com.example.newcracker.dto.user.response.UpdateUserPasswordResponse;
@@ -10,10 +9,9 @@ import com.example.newcracker.entity.Category;
 import com.example.newcracker.entity.Users;
 import com.example.newcracker.global.exception.BadRequestException;
 import com.example.newcracker.repository.UserRepository;
+import com.example.newcracker.utils.UserUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserUtils userUtils;
 
     @Transactional(readOnly = true)
     public UserDetailResponse getUserDetail(HttpServletRequest httpServletRequest) {
-        String email = SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getName();
-
-        Users user = userRepository.findByEmailAndIsDeletedFalse(email)
-                .orElseThrow(() -> new UsernameNotFoundException("유저가 존재하지 않습니다."));
+        Users user = userUtils.extractUser();
 
         return UserDetailResponse.builder()
                 .userId(user.getId())
@@ -43,12 +37,7 @@ public class UserService {
 
     @Transactional
     public UserUpdateResponse updateUser(HttpServletRequest httpServletRequest, UserUpdateRequest request) {
-        String email = SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getName();
-
-        Users user = userRepository.findByEmailAndIsDeletedFalse(email)
-                .orElseThrow(() -> new UsernameNotFoundException("유저가 존재하지 않습니다."));
+        Users user = userUtils.extractUser();
 
         user.updateInfo(
                 request.getEmail(),
@@ -67,12 +56,7 @@ public class UserService {
 
     @Transactional
     public UpdateUserPasswordResponse updateUserPassword(HttpServletRequest httpServletRequest, UserPasswordUpdateRequest request) {
-        String email = SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getName();
-
-        Users user = userRepository.findByEmailAndIsDeletedFalse(email)
-                .orElseThrow(() -> new UsernameNotFoundException("유저가 존재하지 않습니다."));
+        Users user = userUtils.extractUser();
 
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
             throw new BadRequestException("현재 비밀번호가 일치하지 않습니다.");

@@ -22,6 +22,20 @@ public class SwaggerConfig {
                         .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
-                                .bearerFormat("JWT")));
+                                .bearerFormat("JWT")))
+                .components(new Components()
+                        .addSecuritySchemes("accessToken", new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)  // APIKEY -> HTTP로 변경
+                                .scheme("bearer")                // bearer 스킴 지정
+                                .bearerFormat("JWT")
+                                .in(SecurityScheme.In.HEADER)
+                                .name("Authorization"))         // 헤더 이름
+                        .addSecuritySchemes("refreshToken", new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")
+                                .in(SecurityScheme.In.HEADER)
+                                .name("Authorization-refresh")) // 리프레시 토큰용 별도 헤더
+                );
     }
 }

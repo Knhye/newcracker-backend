@@ -8,6 +8,7 @@ import com.example.newcracker.dto.user.response.UserDetailResponse;
 import com.example.newcracker.dto.user.response.UserUpdateResponse;
 import com.example.newcracker.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ public class UserController {
 
 
     @GetMapping
-    @Operation(summary = "Get User Detail", description = "유저 정보 상세 조회 API")
+    @Operation(summary = "Get User Detail", description = "유저 정보 상세 조회 API", security = @SecurityRequirement(name = "accessToken"))
     public ResponseEntity<ApiResponse<UserDetailResponse>> getUserDetail(HttpServletRequest httpServletRequest){
         UserDetailResponse response = userService.getUserDetail(httpServletRequest);
         return ApiResponse.ok(response, "회원 정보를 성공적으로 조회하였습니다.");

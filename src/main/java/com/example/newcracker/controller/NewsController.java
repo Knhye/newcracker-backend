@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -23,42 +22,29 @@ public class NewsController {
      * 1. 카테고리별 뉴스 조회
      */
     @GetMapping("/category")
-    public ResponseEntity<List<NewsDto>> getNewsByCategory(
-            @RequestParam String category) {
+    @Operation(
+            summary = "카테고리별 뉴스 조회",
+            description = "특정 카테고리의 뉴스를 조회합니다."
+    )public ResponseEntity<List<NewsDto>> getNewsByCategory(@RequestParam String category) {
         List<NewsDto> news = newsService.getNewsByCategory(category);
         return ResponseEntity.ok(news);
     }
 
-    /**
-     * 2. 카테고리별 최신 5개 뉴스 조회
-     */
-    @GetMapping("/category/top5")
-    public ResponseEntity<List<NewsDto>> getTop5News(
-            @RequestParam String category) {
-        List<NewsDto> news = newsService.getTop5LatestNews(category);
-        return ResponseEntity.ok(news);
-    }
+
 
     /**
      * 3. 카테고리별 최신순 정렬 뉴스 전체 조회
      */
     @GetMapping("/category/latest")
+    @Operation(
+            summary = "카테고리별 뉴스 조회",
+            description = "특정 카테고리의 뉴스를 조회합니다."
+    )
     public ResponseEntity<List<NewsDto>> getLatestNews(
             @RequestParam String category) {
         List<NewsDto> news = newsService.getLatestNewsByCategory(category);
         return ResponseEntity.ok(news);
     }
 
-    /**
-     * 사용자 맞춤 뉴스 (Users 객체 기반)
-     */
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<NewsDto>> getUserNews(
-            @PathVariable Long userId) {
-        // UserService를 통해 Users 객체를 가져온다고 가정
-        // Users user = userService.findById(userId);
-        // List<NewsDto> news = newsService.getNewsForUser(user);
-        // return ResponseEntity.ok(news);
-        return ResponseEntity.ok(Collections.emptyList());
-    }
+
 }

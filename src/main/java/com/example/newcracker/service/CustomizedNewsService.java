@@ -1,0 +1,35 @@
+package com.example.newcracker.service;
+
+import com.example.newcracker.dto.news.NewsDto;
+import com.example.newcracker.utils.NewsUtils;
+import com.example.newcracker.utils.UserUtils;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class CustomizedNewsService {
+    private final NewsUtils newsUtils;
+    private final UserUtils userUtils;
+    /**
+     * 2. 최신순 5개 뉴스 반환
+     */
+    public List<NewsDto> getTop5LatestNews() {
+        List<NewsDto> newsList = newsUtils.fetchNewsFromNaver(String.valueOf(userUtils.extractUser().getCategory()), 100);
+        return newsUtils.sortByLatest(newsList).stream()
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 사용자의 메인 카테고리 기반 뉴스 조회
+     */
+    public List<NewsDto> getNewsForUser() {
+        return getTop5LatestNews();
+    }
+}
