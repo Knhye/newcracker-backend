@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class NewsService {
-    private final NewsUtils newsUtils;
     private final NaverNewsClient naverNewsClient;
 
     /**
@@ -28,6 +27,6 @@ public class NewsService {
      */
     public List<NewsDto> getLatestNewsByCategory(String category) {
         List<NewsDto> newsList = naverNewsClient.fetchNewsFromNaver(category, 100);
-        return newsUtils.sortByLatest(newsList);
+        return NewsUtils.sortByLatest(newsList);
     }
 }

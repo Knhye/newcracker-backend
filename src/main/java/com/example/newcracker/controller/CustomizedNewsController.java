@@ -38,7 +38,7 @@ public class CustomizedNewsController {
     @GetMapping
     @Operation(
             summary = "카테고리별 뉴스 조회",
-            description = "특정 카테고리의 뉴스를 조회합니다.",
+            description = "사용자 지정 카테고리의 뉴스를 조회합니다.",
             security = @SecurityRequirement(name = "accessToken")
     )
     public ResponseEntity<List<NewsDto>> getUserNews() {

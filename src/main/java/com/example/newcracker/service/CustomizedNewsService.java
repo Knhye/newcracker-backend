@@ -16,14 +16,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CustomizedNewsService {
     private final NaverNewsClient naverNewsClient;
-    private final NewsUtils newsUtils;
     private final UserHelper userHelper;
     /**
      * 2. 최신순 5개 뉴스 반환
      */
     public List<NewsDto> getTop5LatestNews() {
         List<NewsDto> newsList = naverNewsClient.fetchNewsFromNaver(String.valueOf(userHelper.extractUser().getCategory()), 100);
-        return newsUtils.sortByLatest(newsList).stream()
+        return NewsUtils.sortByLatest(newsList).stream()
                 .limit(5)
                 .collect(Collectors.toList());
     }
