@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/news")
+@RequestMapping("/api/news/user")
 @RequiredArgsConstructor
 @Tag(name = "Customized User Controller", description = "customized News by user Controller API")
 public class CustomizedNewsController {
@@ -22,7 +22,7 @@ public class CustomizedNewsController {
     /**
      * 1. 사용자 지정 카테고리별 최신 5개 뉴스 조회
      */
-    @GetMapping("/category/top5")
+    @GetMapping("/top5")
     @Operation(
             summary = "사용자 지정 카테고리별 최신 뉴스 5개 조회",
             description = "특정 카테고리의 뉴스를 조회합니다.",
@@ -36,7 +36,7 @@ public class CustomizedNewsController {
     /**
      * 2. 사용자 맞춤 뉴스 (Users 객체 기반)
      */
-    @GetMapping("/user/{userId}")
+    @GetMapping
     @Operation(
             summary = "카테고리별 뉴스 조회",
             description = "특정 카테고리의 뉴스를 조회합니다.",
