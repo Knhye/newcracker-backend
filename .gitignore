@@ -38,4 +38,5 @@ out/
 
 mysql-init/**
 docker
-resources
+resources"hs_err_pid*.log" 
+"replay_pid*.log" 
